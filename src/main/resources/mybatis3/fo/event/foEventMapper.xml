@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foEventMapper">
+
+    <!-- 이벤트 목록 -->
+    <select id="arraysEvent" statementType="PREPARED" parameterType="map">
+        /* foEventMapper.arraysEvent */
+        select EVENT_SEQ
+             , EVENT_BANNER
+             , START_DATE
+             , END_DATE
+          from T_EVENT
+         where USE_YN = 'Y'
+           and EVENT_TYPE = #{event_type}
+    </select>
+
+    <!-- 이벤트 조회 -->
+    <select id="selectEvent" statementType="PREPARED" parameterType="map">
+        /* foEventMapper.selectEvent */
+        select EVENT_SEQ
+             , EVENT_TITLE
+             , EVENT_IMAGE
+             , START_DATE
+             , END_DATE
+             , NOTE
+          from T_EVENT
+         where USE_YN = 'Y'
+           and EVENT_SEQ = #{event_seq}
+    </select>
+
+
+</mapper>

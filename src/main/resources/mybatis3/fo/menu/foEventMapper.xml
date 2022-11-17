@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foMenuMapper">
+
+    <!-- 메뉴 목록 -->
+    <select id="arraysMenu" statementType="PREPARED">
+        /* foMenuMapper.arraysMenu */
+        select EVENT_SEQ
+             , EVENT_BANNER
+             , START_DATE
+             , END_DATE
+          from T_EVENT
+         where USE_YN = 'Y'
+           and EVENT_TYPE = #{event_type}
+    </select>
+
+    <!-- 제품 목록 -->
+    <select id="arraysProduct" statementType="PREPARED" parameterType="map">
+        /* foMenuMapper.arraysProduct */
+        select PRODUCT_SEQ
+             , PRODUCT_NM
+             , PRODUCT_IMAGE
+          from T_PRODUCT
+         where USE_YN = 'Y'
+           and MENU_CD = #{menu_cd}
+    </select>
+
+    <!-- 제품 조회 -->
+    <select id="selectProduct" statementType="PREPARED" parameterType="map">
+        /* foMenuMapper.selectProduct */
+        select PRODUCT_SEQ
+             , PRODUCT_NM
+             , MENU_CD
+             , PRODUCT_IMAGE
+             , NOTE
+             , INGREDIENT
+             , ALLERGY
+          from T_PRODUCT
+         where USE_YN = 'Y'
+           and PRODUCT_SEQ = #{product_seq}
+    </select>
+
+    <!-- 제품 아이템 목록 -->
+    <select id="arraysProductItem" statementType="PREPARED" parameterType="map">
+        /* foMenuMapper.arraysProductItem */
+        select PRODUCT_ITEM_SEQ
+             , PRODUCT_ITEM_NM
+             , PRODUCT_ITEM_IMAGE
+             , NOTE
+          from T_PRODUCT_ITEM
+         where USE_YN = 'Y'
+           and PRODUCT_SEQ = #{product_seq}
+    </select>
+</mapper>
